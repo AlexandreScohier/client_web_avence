@@ -1,26 +1,27 @@
 import React, {useState} from "react";
+import "../style/connectionStyle.css"
 
 class Connection extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {id: '',password:''};
+        this.state = {email: '',password:''};
 
     }
 
 
     render() {
         return(
-            <div>
-                <h1>To connected</h1>
+            <div className="formConnection">
+                <h1>Avant tout veuillez vous connecter</h1>
                 <form>
-                    <label>id
+                    <label>email</label>
                     <input type="text" name="id" />
-                    </label>
-                    <label>password
+
+                    <label>password</label>
                     <input type="text" name="password"/>
-                    </label>
-                    <input type="submit" value="Envoyer" />
+
+                    <input type="submit" value="se connecter" />
                 </form>
             </div>
 

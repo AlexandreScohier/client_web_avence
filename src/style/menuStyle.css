@@ -1,0 +1,20 @@
+.menu{
+    display: grid;
+    width: 500px;
+}
+.menu button{
+    margin-bottom: 10px;
+    border: none;
+    background-color: #1F68FE;
+    color: white;
+    height: 75px;
+}
+
+.menu button:last-child{
+    margin-bottom: 0px;
+}
+
+.menu button:hover{
+    background-color: #0053ff;
+}
+
