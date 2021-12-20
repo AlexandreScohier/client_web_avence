@@ -8,8 +8,8 @@ class Menu extends React.Component{
             <div className="menu">
                 <button>Modifier las mécaniciens</button>
                 <button>Modifier les garages</button>
-                <button>Modifier la table disponibilité</button>
-                <button>Modifier les réparation </button>
+                <button>Modifier les disponibilités des mécaniciens</button>
+                <button>Modifier les réparations </button>
             </div>
         )
     }
