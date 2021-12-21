@@ -1,11 +1,24 @@
 import React, {useState} from "react";
-import "../style/connectionStyle.css"
+import "../style/connectionStyle.css";
+
 
 class Connection extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {email: '',password:''};
+        this.state = {
+            email: '',
+            password:'',
+            loaded:false,
+            loading:false,
+        errorMassage:false,
+        connected:false};
+
+    }
+    dissmisError(){
+        this.setState({error:""});
+    }
+    async handleSubmit(){
 
     }
 
