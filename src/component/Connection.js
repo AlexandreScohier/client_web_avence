@@ -72,19 +72,15 @@ class Connection extends React.Component{
                 contentMessage = <Grid item><Typography component={"h6"} color={"error"}>{this.state.errorMassage}</Typography> </Grid>
             }
             return (
-                <Grid container spacing={0} justify={"center"} direction={"row"}>
+                <div className="gridConnection">
+                <Grid container  justify={"center"} direction={"row"}>
                     <Grid item>
-                        <Grid
-                            container
-                        direction={"column"}
-                        justify={"center"}
-                        spacing={2}
-                        className={"login-form"}>
+                        <Grid container direction={"column"} justify={"center"} className={"login-form"}>
                             <Grid item>
-                                <Typography component={"h1"} variant={"h5"}>Se connecter</Typography>
+                                <Typography component={"h1"}>Se connecter</Typography>
                             </Grid>
                             <Grid item>
-                                <Grid container direction={"column"} spacing={2}>
+                                <Grid container direction={"column"} spacing={3}>
                                     <Grid item>
                                         <TextField
                                         type={"text"}
@@ -108,7 +104,6 @@ class Connection extends React.Component{
                                         required
                                         />
                                     </Grid>
-                                    {contentMessage && contentMessage}
                                     <Grid item>
                                         <Button
                                             variant={"contained"}
@@ -121,12 +116,14 @@ class Connection extends React.Component{
                                             Connexion
                                         </Button>
                                     </Grid>
+                                    {contentMessage && contentMessage}
                                 </Grid>
                             </Grid>
 
                         </Grid>
                     </Grid>
                 </Grid>
+                </div>
             )
 
 
