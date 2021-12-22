@@ -39,6 +39,11 @@ class Routes extends React.Component{
                         }
                         }
                         />
+                        <Route path={"menu/garages"} render={()=>{
+                            console.log("Essaie garages");
+                            return this.state.user === undefined ? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano") ? <Garage/> : <Redirect to={"/login"}/>
+                        }
+                        }/>
                     </Switch>
                 </Router>
             </div>
