@@ -10,10 +10,6 @@
     height: 75px;
 }
 
-.menu button:last-child{
-    margin-bottom: 0px;
-}
-
 .menu button:hover{
     background-color: #0053ff;
 }
