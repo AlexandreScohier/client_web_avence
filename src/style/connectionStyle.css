@@ -42,5 +42,6 @@
 }
 
 .formConnection input:last-child:hover{
+    border: none;
     background-color: #0053ff;
 }
