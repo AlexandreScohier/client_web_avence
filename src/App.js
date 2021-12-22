@@ -1,18 +1,13 @@
 import React from 'react';
-import ReactDOM from "react-dom";
 import './App.css';
-import Connection from "./component/Connection";
-import Menu from "./component/Menu";
-import TableauGarage from "./component/Tableau";
 
+import Routes from './routes/Routes';
 
 function App() {
   return (
-      <div className="App">
-          <Connection/>
-          <Menu/>
-          <TableauGarage/>
-      </div>
+    <div className="App">
+      <Routes/>
+    </div>
   );
 }
 

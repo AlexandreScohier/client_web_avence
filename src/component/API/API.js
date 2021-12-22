@@ -3,7 +3,8 @@ import axios from "axios";
 const API_URL = "http://localhost:3001/";
 let header = {'Access-Control-Allow-Origin' : "*"}
 const login = async(adresseMail,password)=>{
-    const reponse = await axios.post(API_URL+"user/loginAdmin",{
+
+    const reponse = await axios.post(API_URL+"user/admin",{
         adresseMail,
         password
     },{
@@ -11,9 +12,9 @@ const login = async(adresseMail,password)=>{
     }).catch(error=>{
 
         if(error.response.status === 400){
-            throw new Error("Les identifiants n'existe pas dans la base de données");
-        }else if(error.response.status ===404){
-            throw new Error("Utilisateur inconnu");
+            throw new Error("Les identifiants n'existent pas dans la base de données");
+        }else if(error.response.status === 404){
+            throw new Error("Utilisateur inconnu pour cet administrateur");
         }else if(error.response.status === 500){
             throw new Error("Erreur de connexion");
         }
@@ -23,14 +24,14 @@ const login = async(adresseMail,password)=>{
         'Authorization': 'Bearer ' + reponse.data,
         'Access-Control-Allow-Origin' : "*"
     }
-    const jwt = Buffer.from(reponse.data,"base64").toString("utf-8");
+    console.log(reponse.data);
 
-    return JSON.parse(jwt);
+    return reponse.data;
 
 
 }
 const getAllGarage = async ()=>{
-    const reponse = await axios.get(API_URL+"client/1",{
+    const reponse = await axios.get(API_URL+"garage/",{
     headers : header
     }).catch(error=>{
         if(error.response.status === 404)
@@ -38,7 +39,7 @@ const getAllGarage = async ()=>{
         else if(error.response.status === 500)
             throw new Error("Erreur de connexion");
     });
-    console.log(reponse);
+    console.log(JSON.stringify(reponse.data));
     return reponse.data;
 }
 export {

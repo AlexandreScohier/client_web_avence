@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/client_web_avence.iml" filepath="$PROJECT_DIR$/.idea/client_web_avence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-component.iml" filepath="$PROJECT_DIR$/.idea/react-component.iml" />
     </modules>
   </component>
 </project>
