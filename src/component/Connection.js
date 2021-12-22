@@ -61,7 +61,7 @@ class Connection extends React.Component{
 
     render() {
             if(this.state.connected){
-                return <Redirect to={"/"}/>
+                return <Redirect to={"/menu"}/>
             }
             let contentMessage;
             if(!this.state.loaded)

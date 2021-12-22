@@ -38,11 +38,11 @@ class TableauGarage extends React.Component{
                     {
                         this.state.garages.map((garage,index)=>{
                             return(
-                                <tr>
+                                <tr key={index}>
                                     <td>{garage.nom}</td>
                                     <td>{garage.adresse}</td>
-                                    <td>{garage.numTel}</td>
-                                    <td><img alt={"cc"} src={garage.image}/></td>
+                                    <td>{garage.numtel}</td>
+                                    <td><img alt={"cc"} width={"60px"} height={"60px"} src={garage.image}/></td>
                                 </tr>
 
                             )

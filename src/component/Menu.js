@@ -15,43 +15,37 @@ class Menu extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-
+            user : this.props.user
         }
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
     }
 
     render() {
-        console.log("cc");
         return(
             <div className="menu">
                 <Button
                     variant={"contained"}
-                    label={"Modifier les garages"}
-                    onClick={()=>{
-                        return <Redirect to={"/garage"}/>}}>
+                    component={Link} to={"/garages"}>
                     Modifier les garages
                 </Button>
                 <Button
                     variant={"contained"}
-                    label={"Modifier les garages"}
-                    component={Link} to={"/menu/garages"}>
+                    component={Link} to={"/garages"}>
                     Modifier les mécaniciens
                 </Button>
                 <Button
                     variant={"contained"}
-                    label={"Modifier les garages"}
                     onClick={()=>{
                         console.log("Essaie")
-                        return <Redirect to={"/garage"}/>}}>
+                        return <Redirect to={"/garages"}/>}}>
                     Modifier les horaires
                 </Button>
                 <Button
                     variant={"contained"}
-                    label={"Modifier les garages"}
                     onClick={()=>{
                         console.log("Essaie")
-                        return <Redirect to={"/garage"}/>}}>
+                        return <Redirect to={"/garages"}/>}}>
                     Modifier les reparations
                 </Button>
             </div>
