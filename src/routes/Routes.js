@@ -8,6 +8,7 @@ import {
 import {connect} from "react-redux";
 import Login from "../component/Connection";
 import Menu from "../component/Menu";
+import Tableau from "../component/Tableau"
 class Routes extends React.Component{
     constructor(props) {
         super(props);
@@ -41,7 +42,7 @@ class Routes extends React.Component{
                         />
                         <Route path={"menu/garages"} render={()=>{
                             console.log("Essaie garages");
-                            return this.state.user === undefined ? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano") ? <Garage/> : <Redirect to={"/login"}/>
+                            return this.state.user === undefined ? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano") ? <Tableau/> : <Redirect to={"/login"}/>
                         }
                         }/>
                     </Switch>
