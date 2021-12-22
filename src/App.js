@@ -6,7 +6,7 @@ import Tableau from "./component/Tableau";
 function App() {
   return (
     <div className="App" >
-      <Routes/>
+      <Tableau/>
     </div>
   );
 }
