@@ -12,7 +12,7 @@ const RowReadGarage = ({garage, handleEditClick ,index}) =>{
                 <button type="button" onClick= {(event => handleEditClick(event,index))}>
                     edit
                 </button>
-                <button type="button" onClick={(event => handleEditClick(event,index))}>
+                <button type="button" onClick={()=>handleEditClick.delete(garage.id)}>
                     delete
                 </button>
             </td>

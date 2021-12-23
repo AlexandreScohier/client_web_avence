@@ -1,5 +1,5 @@
 import React,{Fragment, useState} from "react";
-import {getAllGarage} from "../API";
+import {getAllGarage,deleteGarage} from "../API/index";
 import AddGarage from "./AddGarage";
 import RowReadGarage from "./RowReadGarage";
 import RowEditGarage from "./RowEditGarage";
@@ -30,7 +30,12 @@ class TableauGarage extends React.Component{
         event.preventDefault();
         this.setState({idEdit : index});
     }
-
+    renderTableHeader(){
+        let header = Object.keys(this.state.garages[0]);
+        return header.map((key,index)=>{
+            return <th key={index}>{key}</th>
+        })
+    }
 
 
     render() {
@@ -40,9 +45,9 @@ class TableauGarage extends React.Component{
                 <table>
                     <thead>
                         <tr>
-                            {this.state.garages[0].attributename.map((titre)=>(
-                                <th>{titre}</th>
-                                ))}
+                            {
+                                this.renderTableHeader()
+                            }
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,7 +58,7 @@ class TableauGarage extends React.Component{
                                 { this.state.idEdit === index ? (
                                     <RowEditGarage handleEditClick = {this.handleEditClick} garage={{garage}}/>
                                 ) : (
-                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick} index={index}/>
+                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick = {delete : deleteGarage}} index={index}/>
                                 )}
                             </Fragment>
                             ))}

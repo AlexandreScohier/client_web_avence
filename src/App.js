@@ -5,7 +5,7 @@ import TableauGarage from "./component/Garage/GarageTable";
 function App() {
   return (
     <div className="App" >
-      <TableauGarage/>
+        <TableauGarage/>
     </div>
   );
 }

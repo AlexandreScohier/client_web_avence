@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3004/";
+const API_URL = "http://localhost:3001/";
 let header = {'Access-Control-Allow-Origin' : "*"}
 const login = async(adresseMail,password)=>{
 
@@ -22,6 +22,7 @@ const login = async(adresseMail,password)=>{
     });
     header = {
         'Authorization': 'Bearer ' + reponse.data,
+        'Accept-version' : "1.0.0",
         'Access-Control-Allow-Origin' : "*"
     }
     console.log(reponse.data);
@@ -45,7 +46,8 @@ const getAllGarage = async ()=>{
 }
 const deleteGarage = async(idGarage)=>{
     const reponse = await axios.delete(API_URL+"garage/",{
-        headers:header
+        headers:header,
+        id : idGarage
     }).catch(error=>{
         if(error.response.status === 404)
         throw new Error("Garage inconnu");
