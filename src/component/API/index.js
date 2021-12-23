@@ -9,7 +9,15 @@ const login = async(adresseMail,password)=>{
 const getAllGarage = async ()=>{
     return await api.getAllGarage();
 }
+const deleteGarage = async (idGarage)=>{
+    if(idGarage!==undefined){
+        return await api.deleteGarage(idGarage);
+    }else{
+        throw new Error("Identifiant du garage incorrect");
+    }
+}
 export {
     login,
-    getAllGarage
+    getAllGarage,
+    deleteGarage
 }
