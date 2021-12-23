@@ -26,7 +26,6 @@ class TableauGarage extends React.Component{
     }
 
     handleEditClick = (event, index) => {
-        console.log("slt")
         event.preventDefault();
         this.setState({idEdit : index});
     }
@@ -52,7 +51,7 @@ class TableauGarage extends React.Component{
                         this.state.garages.map((garage,index)=>(
                             <Fragment>
                                 { this.state.idEdit === index ? (
-                                    <RowEditGarage handleEditClick = {this.handleEditClick}/>
+                                    <RowEditGarage handleEditClick = {this.handleEditClick} garage={{garage}}/>
                                 ) : (
                                     <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick} index={index}/>
                                 )}

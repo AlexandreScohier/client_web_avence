@@ -1,7 +1,7 @@
 import React from "react";
 import {TextField} from "@material-ui/core";
 
-const RowEditGarage = ({handleEditClick}) =>{
+const RowEditGarage = ({handleEditClick, garage}) =>{
     return(
         <tr>
             <td>
@@ -9,6 +9,7 @@ const RowEditGarage = ({handleEditClick}) =>{
                 type={"text"}
                 name={"Nom"}
                 placeholder={"Nom"}
+                value={garage.name}
                 required
             />
             </td>
@@ -17,6 +18,7 @@ const RowEditGarage = ({handleEditClick}) =>{
                 type={"text"}
                 name={"adresse"}
                 placeholder={"Adresse"}
+                value={garage.address}
                 required
             />
             </td>
@@ -25,6 +27,7 @@ const RowEditGarage = ({handleEditClick}) =>{
                 type={"text"}
                 name={"Numéro de téléphone"}
                 placeholder={"Numéro de téléphone"}
+                value={garage.phoneNumber}
                 required
             />
             </td>
@@ -33,6 +36,7 @@ const RowEditGarage = ({handleEditClick}) =>{
                 type={"text"}
                 name={"image"}
                 placeholder={"Url de l'image"}
+                value={garage.image}
                 required
             />
             </td>
