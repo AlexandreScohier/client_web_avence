@@ -2,11 +2,7 @@ import React, {useState} from "react";
 import "../style/menuStyle.css";
 import "../style/mainStyle.css";
 import {
-    Button,
-    TextField,
-    Grid,
-    Paper,
-    Typography
+    Button
 } from "@material-ui/core";
 import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";

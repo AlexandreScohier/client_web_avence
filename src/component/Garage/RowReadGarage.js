@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
+import "../../style/tableStyle.css"
 
 const RowReadGarage = ({garage, handleEditClick ,index}) =>{
         return(

@@ -1,5 +1,6 @@
 import React from "react";
 import {TextField} from "@material-ui/core";
+import "../../style/tableStyle.css"
 
 class AddGarage extends React.Component{
     constructor() {
@@ -12,7 +13,7 @@ class AddGarage extends React.Component{
     }
     render() {
         return(
-            <div>
+            <div className="AddGarage">
                 <h2>Ajouter un garage</h2>
                 <input
                     type={"text"}
@@ -25,14 +26,14 @@ class AddGarage extends React.Component{
                     type={"text"}
                     name={"adresse"}
                     placeholder={"Adresse"}
-                    value={this.state.adress}
+                    value={this.state.adresse}
                     required
                 />
                 <input
                     type={"text"}
                     name={"Numéro de téléphone"}
                     placeholder={"Numéro de téléphone"}
-                    value={this.state.phoneNumber}
+                    value={this.state.numtel}
                     required
                 />
                 <input

@@ -3,6 +3,7 @@ import {getAllGarage} from "../API";
 import AddGarage from "./AddGarage";
 import RowReadGarage from "./RowReadGarage";
 import RowEditGarage from "./RowEditGarage";
+import "../../style/tableStyle.css"
 
 class TableauGarage extends React.Component{
     constructor() {
@@ -14,7 +15,12 @@ class TableauGarage extends React.Component{
                 phoneNumber: "Numéro de téléphone",
                 image: "image"
             },
-            garages: [],
+            garages: [{
+                name:"bx",
+                adresse : "lolsddsq",
+                phoneNumber: "2232",
+                image:null
+            }],
             idEdit: null,
             idDelete: null,
         }
