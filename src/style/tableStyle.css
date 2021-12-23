@@ -29,6 +29,12 @@ input{
     color: white;
 }
 
+input:focus{
+      background-color: #0053ff;
+      border: 1px solid white;
+      outline: none;
+}
+
 .AddGarage {
     background-color: #1A1A25;
     border: 1px solid white;
@@ -36,11 +42,16 @@ input{
     padding-bottom: 20px;
 }
 
-.AddGarage input{
+.AddGarage input {
     width: 20%;
     height: 20px;
     margin-right: 10px;
     border: 1px solid black;
+}
+.AddGarage input:focus{
+    background-color: #0053ff;
+    border: 1px solid white;
+    outline: none;
 }
 .AddGarage button{
     width: 50px;

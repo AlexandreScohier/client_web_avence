@@ -14,7 +14,7 @@ class AddGarage extends React.Component{
     render() {
         return(
             <div className="AddGarage">
-                <h2>Ajouter un garage</h2>
+                <h1>Ajouter un garage</h1>
                 <input
                     type={"text"}
                     name={"Nom"}
