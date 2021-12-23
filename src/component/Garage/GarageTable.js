@@ -40,10 +40,9 @@ class TableauGarage extends React.Component{
                 <table>
                     <thead>
                         <tr>
-                            <th>{this.state.garageTitle.name}</th>
-                            <th>{this.state.garageTitle.address}</th>
-                            <th>{this.state.garageTitle.phoneNumber}</th>
-                            <th>{this.state.garageTitle.image}</th>
+                            {this.state.garages[0].attributename.map((titre)=>(
+                                <th>{titre}</th>
+                                ))}
                             <th>Action</th>
                         </tr>
                     </thead>
