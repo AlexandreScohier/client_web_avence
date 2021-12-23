@@ -1,13 +1,19 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
 
-const RowReadGarage = ({garage, handleEditClick ,index}) =>{
+const RowReadGarage = ({garage, handleEditClick ,index,renderTableHeader}) =>{
     return(
         <tr>
-            <td>{garage.nom}</td>
-            <td>{garage.adresse}</td>
-            <td>{garage.numtel}</td>
-            <td><img alt={""} width={"60px"} height={"60px"} src={garage.image}/></td>
+            {
+                 renderTableHeader(garage).map((column,index)=>{
+                    console.log(garage);
+                    if(column !== "image") {
+                        return <td>{garage[`${column}`]}</td>;
+                    }else{
+                        return <img height={"60px"} width={"60px"} src={garage[`${column}`]}/>;
+                    }
+                })
+            }
             <td>
                 <button type="button" onClick= {(event => handleEditClick(event,index))}>
                     edit
@@ -17,7 +23,8 @@ const RowReadGarage = ({garage, handleEditClick ,index}) =>{
                 </button>
             </td>
         </tr>
-    )
+    );
+
 }
 
 export default RowReadGarage;

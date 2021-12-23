@@ -8,6 +8,7 @@ import "../../style/tableStyle.css";
 class TableauGarage extends React.Component{
     constructor() {
         super();
+
         this.state = {
             garageTitle: {
                 name: "Nom",
@@ -15,6 +16,7 @@ class TableauGarage extends React.Component{
                 phoneNumber: "Numéro de téléphone",
                 image: "image"
             },
+            titles : [],
             garages: [],
             idEdit: null,
             idDelete: null,
@@ -24,20 +26,24 @@ class TableauGarage extends React.Component{
 
     componentDidMount() {
         getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
+        console.log(this.state.garages);
+
     }
 
     handleEditClick = (event, index) => {
         event.preventDefault();
         this.setState({idEdit : index});
     }
-    renderTableHeader(){
-        let header = Object.keys(this.state.garages[0]);
-        return header.map((key,index)=>{
-            return <th key={index}>{key}</th>
-        })
+    renderTableHeader(tab) {
+        let titles = [];
+        console.log(tab);
+        for (let name in tab) {
+            if (name !== "id") {
+                titles.push(name);
+            }
+        }
+        return titles;
     }
-
-
     render() {
         return (
             <div>
@@ -46,7 +52,10 @@ class TableauGarage extends React.Component{
                     <thead>
                         <tr>
                             {
-                                this.renderTableHeader()
+                                this.renderTableHeader(this.state.garages[0]).map((title,index)=>{
+                                        return <th>{title}</th>;
+
+                                })
                             }
                             <th>Action</th>
                         </tr>
@@ -58,7 +67,7 @@ class TableauGarage extends React.Component{
                                 { this.state.idEdit === index ? (
                                     <RowEditGarage handleEditClick = {this.handleEditClick} garage={{garage}}/>
                                 ) : (
-                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick = {delete : deleteGarage}} index={index}/>
+                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick = {delete : deleteGarage}} index={index} renderTableHeader={this.renderTableHeader}/>
                                 )}
                             </Fragment>
                             ))}
