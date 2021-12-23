@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
 
-const RowRead = ({garage, handleEditClick ,index}) =>{
+const RowReadGarage = ({garage, handleEditClick ,index}) =>{
         return(
                 <tr>
                     <td>{garage.nom}</td>
@@ -20,4 +20,4 @@ const RowRead = ({garage, handleEditClick ,index}) =>{
         )
 }
 
-export default RowRead;
+export default RowReadGarage;

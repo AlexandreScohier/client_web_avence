@@ -1,7 +1,7 @@
 import React from "react";
 import {TextField} from "@material-ui/core";
 
-const RowEdit = ({handleEditClick}) =>{
+const RowEditGarage = ({handleEditClick}) =>{
     return(
         <tr>
             <td>
@@ -48,4 +48,4 @@ const RowEdit = ({handleEditClick}) =>{
     );
 };
 
-export default RowEdit;
+export default RowEditGarage;

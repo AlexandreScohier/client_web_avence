@@ -1,8 +1,8 @@
 import React,{Fragment, useState} from "react";
-import {getAllGarage} from "./API";
+import {getAllGarage} from "../API";
 import AddGarage from "./AddGarage";
-import RowRead from "./RowRead";
-import RowEdit from "./RowEdit";
+import RowReadGarage from "./RowReadGarage";
+import RowEditGarage from "./RowEditGarage";
 
 class TableauGarage extends React.Component{
     constructor() {
@@ -52,9 +52,9 @@ class TableauGarage extends React.Component{
                         this.state.garages.map((garage,index)=>(
                             <Fragment>
                                 { this.state.idEdit === index ? (
-                                    <RowEdit handleEditClick = {this.handleEditClick}/>
+                                    <RowEditGarage handleEditClick = {this.handleEditClick}/>
                                 ) : (
-                                    <RowRead garage={garage} handleEditClick = {this.handleEditClick} index={index}/>
+                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick} index={index}/>
                                 )}
                             </Fragment>
                             ))}

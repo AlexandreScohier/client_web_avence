@@ -8,7 +8,7 @@ import {
 import {connect} from "react-redux";
 import Login from "../component/Connection";
 import Menu from "../component/Menu";
-import Tableau from "../component/Tableau"
+import Tableau from "../component/Garage/GarageTable"
 class Routes extends React.Component{
     constructor(props) {
         super(props);
