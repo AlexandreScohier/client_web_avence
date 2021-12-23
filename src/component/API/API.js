@@ -47,7 +47,9 @@ const getAllGarage = async ()=>{
 const deleteGarage = async(idGarage)=>{
     const reponse = await axios.delete(API_URL+"garage/",{
         headers:header,
-        id : idGarage
+        data:{
+            id : idGarage
+        }
     }).catch(error=>{
         if(error.response.status === 404)
         throw new Error("Garage inconnu");
