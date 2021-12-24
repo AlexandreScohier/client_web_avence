@@ -7,19 +7,19 @@ const RowEditGarage = ({handleEditClick, element, renderTableHeader}) =>{
         <tr>
             {
                 renderTableHeader(element).map((column,index)=>{
-                    return <td>
-                            <input
+                    return (
+                        <td>
+                            <input key={index}
                             type={"text"}
                             name={element[`${column}`]}
-                            placeholder={element[`${column}`]}
                             value={element[`${column}`]}
                             required
-                        >{element[`${column}`]}</input>
-                        </td>;
+                            /></td>
+                        );
                 })
             }
             <td>
-                <button type="button">
+                <button type="button" onClick={}>
                     save
                 </button>
                 <button type="button" onClick= {(event => handleEditClick(event,null))}>

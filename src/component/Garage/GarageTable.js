@@ -46,28 +46,29 @@ class TableauGarage extends React.Component{
                         <tr>
                             {
                                 this.renderTableHeader(this.state.elements[0]).map((title,index)=>{
-                                        return <th>{title}</th>;
+                                        return <th key={index}>{title}</th>;
 
                                 })
                             }
-                            <th>Action</th>
+                            <th key={"titleTh"}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         this.state.elements.map((element,index)=>(
-                            <Fragment>
+                            <Fragment key={index}>
                                 { this.state.idEdit === index ? (
                                     <RowEditGarage handleEditClick = {this.handleEditClick} element={element} renderTableHeader={this.renderTableHeader}/>
                                 ) : (
-                                    <RowReadGarage element={element} handleEditClick = {this.handleEditClick = {delete : this.deleteGarage}} index={index} renderTableHeader={this.renderTableHeader}/>
+                                    <RowReadGarage element={element} handleEditClick={this.handleEditClick} handleDeleteClick = {this.deleteElement} index={index} renderTableHeader={this.renderTableHeader}/>
                                 )}
                             </Fragment>
                             ))}
                     </tbody>
                 </table>
+                    <AddGarage renderTableHeader={this.renderTableHeader} element = {this.state.elements[0]}/>
                 </form>
-                <AddGarage renderTableHeader={this.renderTableHeader()} element = {this.state.elements[0]}/>
+
             </div>
 
         )

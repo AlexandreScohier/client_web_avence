@@ -5,7 +5,7 @@ import SelectMechanics from "./component/Garage/SelectMechanics";
 function App() {
   return (
     <div className="App" >
-        <SelectMechanics/>
+        <Routes/>
     </div>
   );
 }

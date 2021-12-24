@@ -58,15 +58,14 @@ const deleteGarage = async(idGarage)=>{
     return reponse.status;
 }
 const postGarage = async(nom,adresse,numTel,image)=>{
-    console.log(nom);
+    console.log(nom,adresse,numTel,image);
     const reponse = await axios.post(API_URL+"garage/", {
-        nom,
-        adresse,
-        numTel,
-        image
+        nom:nom,
+        adresse:adresse,
+        numTel:numTel,
+        image:image
     },{
         headers : header
-
     }).catch(error=>{
         if(error.response.status===500){
             throw new Error("Erreur sdur le serveur")
@@ -92,10 +91,72 @@ const updateGarage = async(id,nom,adresse,numTel)=>{
     });
     return reponse.data;
 }
+const getAllMecanicien = async()=>{
+    const reponse = await axios.get(API_URL+"mecano/",{
+        headers : header
+    }).catch(error=>{
+        if(error.response.status === 404)
+            throw new Error("Pas de mécanicien dans la base de dinnées");
+        else if(error.response.status === 500)
+            throw new Error("Erreur de connexion");
+    })
+    return reponse.data;
+}
+const deleteMecanicien =  async(idMecanicien)=>{
+    const reponse = await axios.delete(API_URL+"mecano/",{
+        headers:header,
+        data:{
+            id : idMecanicien
+        }
+    }).catch(error=>{
+        if(error.response.status === 404)
+            throw new Error("Mecano inconnu");
+    });
+    return reponse.status;
+}
+const updateMecanicien= async(id,nom,prenom,password)=>{
+    const reponse = await axios.patch(API_URL+"mecano/",{
+        headers:header,
+        data : {
+            id : id,
+            nom:nom,
+            prenom: prenom,
+            password : password
+        }
+    }).catch(error=>{
+        if(error.response.status === 500){
+            throw new Error("Ressource manquante");
+        }
+    });
+    return reponse.data;
+}
+const postMecanicien = async(nom,prenom,password,adresseMail,garage_fk)=>{
+    console.log(nom,prenom,password,adresseMail,garage_fk);
+    const reponse = await axios.post(API_URL+"mecano/", {
+        nom:nom,
+        prenom:prenom,
+        password:password,
+        adresseMail:adresseMail,
+        garage_fk : garage_fk
+    },{
+        headers : header
+    }).catch(error=>{
+        if(error.response.status===500){
+            throw new Error("Erreur sdur le serveur")
+        }else if(error.response.status === 400){
+            throw new Error("Erreur sur les éléments de la requête");
+        }
+    });
+    return reponse.data;
+}
 export {
     login,
     getAllGarage,
     deleteGarage,
     postGarage,
-    updateGarage
+    updateGarage,
+    getAllMecanicien,
+    deleteMecanicien,
+    updateMecanicien,
+    postMecanicien
 }

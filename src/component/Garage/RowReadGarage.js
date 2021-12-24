@@ -1,15 +1,15 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
 
-const RowReadGarage = ({element, handleEditClick ,index,renderTableHeader}) =>{
+const RowReadGarage = ({element, handleEditClick,handleDeleteClick ,index,renderTableHeader}) =>{
     return(
         <tr>
             {
                  renderTableHeader(element).map((column,index)=>{
                     if(column !== "image") {
-                        return <td>{element[`${column}`]}</td>;
+                        return <td key={index}>{element[`${column}`]}</td>;
                     }else{
-                        return <img height={"60px"} width={"60px"} src={element[`${column}`]}/>;
+                        return <td key={index}><img height={"60px"} width={"60px"} src={element[`${column}`]}/></td>;
                     }
                 })
             }
@@ -17,7 +17,7 @@ const RowReadGarage = ({element, handleEditClick ,index,renderTableHeader}) =>{
                 <button type="button" onClick= {(event => handleEditClick(event,index))}>
                     edit
                 </button>
-                <button type="button" onClick={()=>handleEditClick.delete(element.id)}>
+                <button type="button" onClick={()=>handleDeleteClick(element.id)}>
                     delete
                 </button>
             </td>

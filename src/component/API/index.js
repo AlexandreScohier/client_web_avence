@@ -31,10 +31,38 @@ const updateGarage = async(id,nom,adresse,numTel)=>{
         throw new Error("Les informations à envoyer à l'pi ne sont pas bonnes");
     }
 }
+const getAllMecanicien = async()=>{
+    return await api.getAllMecanicien();
+}
+const deleteMecanicien = async (idMecano)=>{
+    if(idMecano!==undefined){
+        return await api.deleteGarage(idMecano);
+    }else{
+        throw new Error("Identifiant du mécanicien incorrect");
+    }
+}
+const updateMecanicien = async(id,nom,prenom,password)=>{
+    if(id!==undefined && nom !== undefined && prenom !== undefined && password!== undefined){
+        return await api.updateMecanicien(id,nom,prenom,password);
+    }{
+        throw new Error("Les informations à envoyer à l'pi ne sont pas bonnes");
+    }
+}
+const postMecano = async(mecano)=>{
+    if(mecano !== undefined){
+        return await api.postMecanicien(mecano.nom,mecano.prenom,mecano.password,mecano.adresseMail,mecano.garage_fk);
+    }else{
+        throw new Error("Erreur composant le garage manquant");
+    }
+}
 export {
     login,
     getAllGarage,
     deleteGarage,
     postGarage,
-    updateGarage
+    updateGarage,
+    getAllMecanicien,
+    deleteMecanicien,
+    updateMecanicien,
+    postMecano
 }
