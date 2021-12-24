@@ -27,6 +27,15 @@ class TableauGarage extends React.Component{
         event.preventDefault();
         this.setState({idEdit : index});
     }
+    handleSaveEditClick = (event,element)=>{
+        event.preventDefault();
+        let elements = [];
+        for(let element1 in element)
+            elements.push(element[`${element1}`]);
+        this.updateGarage(...elements);
+        this.handleEditClick(event,null);
+    }
+
 
     renderTableHeader(tab) {
         let titles = [];
@@ -58,7 +67,7 @@ class TableauGarage extends React.Component{
                         this.state.elements.map((element,index)=>(
                             <Fragment key={index}>
                                 { this.state.idEdit === index ? (
-                                    <RowEditGarage handleEditClick = {this.handleEditClick} element={element} renderTableHeader={this.renderTableHeader}/>
+                                    <RowEditGarage handleEditClick = {this.handleEditClick} handleSaveEditClick={this.handleSaveEditClick} element={element} renderTableHeader={this.renderTableHeader}/>
                                 ) : (
                                     <RowReadGarage element={element} handleEditClick={this.handleEditClick} handleDeleteClick = {this.deleteElement} index={index} renderTableHeader={this.renderTableHeader}/>
                                 )}

@@ -25,6 +25,7 @@ const postGarage = async(garage)=>{
     }
 }
 const updateGarage = async(id,nom,adresse,numTel)=>{
+    console.log(id+nom+adresse+numTel);
     if(id!==undefined && nom !== undefined && adresse !== undefined && numTel!== undefined){
         return await api.updateGarage(id,nom,adresse,numTel);
     }{
@@ -49,6 +50,13 @@ const updateMecanicien = async(id,nom,prenom,password)=>{
     }
 }
 const postMecano = async(mecano)=>{
+    if(mecano !== undefined){
+        return await api.postMecanicien(mecano.nom,mecano.prenom,mecano.password,mecano.adresseMail,mecano.garage_fk);
+    }else{
+        throw new Error("Erreur composant le garage manquant");
+    }
+}
+const postDispo = async(dispo)=>{
     if(mecano !== undefined){
         return await api.postMecanicien(mecano.nom,mecano.prenom,mecano.password,mecano.adresseMail,mecano.garage_fk);
     }else{
