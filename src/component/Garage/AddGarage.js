@@ -61,38 +61,6 @@ class AddGarage extends React.Component{
                                     </input>);
                     })
                 }
-                <input
-                    type={"text"}
-                    name={"Nom"}
-                    value={this.state.name}
-                    placeholder={"Nom"}
-
-                    required
-                    />
-                <input
-                    type={"text"}
-                    name={"adresse"}
-                    placeholder={"Adresse"}
-                    value={this.state.address}
-                    onChange={(event => this.addressChange(event))}
-                    required
-                />
-                <input
-                    type={"text"}
-                    name={"Numéro de téléphone"}
-                    placeholder={"Numéro de téléphone"}
-                    value={this.state.phoneNumber}
-                    onChange={event => this.phoneNumberChange(event)}
-                    required
-                />
-                <input
-                    type={"text"}
-                    name={"image"}
-                    placeholder={"Url de l'image"}
-                    value={this.state.image}
-                    onChange={event => this.imageChange(event)}
-                    required
-                />
                 <button type={"submit"} onClick={()=>this.submit(this.state.name,this.state.address,this.state.phoneNumber,this.state.image)}>Add</button>
             </div>
         )
