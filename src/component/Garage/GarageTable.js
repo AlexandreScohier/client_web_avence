@@ -6,10 +6,10 @@ import "../../style/tableStyle.css";
 import {getAllGarage} from "../API";
 
 class TableauGarage extends React.Component{
-    constructor() {
-        super();
-        this.getAllElements = this.getAllGarage.bind(this);
-        this.deleteElement= this.deleteGarage.bind(this);
+    constructor(props) {
+        super(props);
+        this.getAllElements = this.props.getAllElements;
+        this.deleteElement= this.props.deleteElement;
         this.state = {
             titles : [],
             elements: [],
