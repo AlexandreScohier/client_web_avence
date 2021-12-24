@@ -24,6 +24,7 @@ class SelectMechanics extends React.Component {
                     Choisissez un mécanicien :
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="X">X</option>
+                        <option value="X">X</option>
                     </select>
                 </label>
                 <input type="submit" value="Envoyer" />
