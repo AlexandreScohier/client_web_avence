@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import Routes from "./routes/Routes";
-import TableauGarage from "./component/Garage/GarageTable";
+import SelectMechanics from "./component/Garage/SelectMechanics";
 function App() {
   return (
     <div className="App" >
-        <Routes/>
+        <SelectMechanics/>
     </div>
   );
 }
