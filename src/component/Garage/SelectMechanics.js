@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import Select from 'react-select'
 import "../../style/SelectMechanicsStyle.css"
 
 class SelectMechanics extends React.Component {
-    constructor() {
-        super();
-        this.state = {value : ""};
+    constructor(props) {
+        super(props);
+        this.state = {value : null};
+        this.handleSelection = this.props.handleSelection
     }
     handleChange(event) {
         this.setState({value: event.target.value});
@@ -13,6 +13,7 @@ class SelectMechanics extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.handleSelection(event, this.state.value);
     }
 
 
