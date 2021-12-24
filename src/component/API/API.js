@@ -21,10 +21,11 @@ const login = async(adresseMail,password)=>{
 
     });
     header = {
-        'Authorization': 'Bearer ' + reponse.data,
+        'Authorization': 'Bearer ' + reponse.data.token,
         'Accept-version' : "1.0.0",
         'Access-Control-Allow-Origin' : "*"
     }
+    console.log(header);
     console.log(reponse.data);
 
 
@@ -58,14 +59,14 @@ const deleteGarage = async(idGarage)=>{
 }
 const postGarage = async(nom,adresse,numTel,image)=>{
     console.log(nom);
-    const reponse = await axios.post(API_URL+"garage/",{
-        headers:header,
-        data:{
-            nom : nom,
-            adresse : adresse,
-            numTel : numTel,
-            image : image
-        }
+    const reponse = await axios.post(API_URL+"garage/", {
+        nom,
+        adresse,
+        numTel,
+        image
+    },{
+        headers : header
+
     }).catch(error=>{
         if(error.response.status===500){
             throw new Error("Erreur sdur le serveur")
