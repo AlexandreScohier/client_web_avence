@@ -1,8 +1,7 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
-import Redirect from "react-router-dom/es/Redirect";
 
-const RowReadGarage = ({garage, handleEditClick ,handleDeleteClick,index,renderTableHeader,id}) =>{
+const RowReadGarage = ({garage, handleEditClick ,index,renderTableHeader}) =>{
     return(
         <tr>
             {
@@ -19,7 +18,7 @@ const RowReadGarage = ({garage, handleEditClick ,handleDeleteClick,index,renderT
                 <button type="button" onClick= {(event => handleEditClick(event,index))}>
                     edit
                 </button>
-                <button type="button" onClick={(event)=>{handleDeleteClick(id)}}>
+                <button type="button" onClick={()=>handleEditClick.delete(garage.id)}>
                     delete
                 </button>
             </td>
