@@ -11,7 +11,6 @@ class TableauGarage extends React.Component{
         this.getAllElements = this.props.getAllElements;
         this.deleteElement= this.props.deleteElement;
         this.state = {
-            titles : [],
             elements: [],
             idEdit: null,
             idDelete: null,
@@ -29,7 +28,6 @@ class TableauGarage extends React.Component{
 
     renderTableHeader(tab) {
         let titles = [];
-        console.log(tab);
         for (let name in tab) {
             if (name !== "id") {
                 titles.push(name);
@@ -67,7 +65,7 @@ class TableauGarage extends React.Component{
                     </tbody>
                 </table>
                 </form>
-                <AddGarage/>
+                <AddGarage renderTableHeader={this.renderTableHeader()} element = {this.state.elements[0]}/>
             </div>
 
         )

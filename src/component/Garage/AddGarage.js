@@ -6,6 +6,8 @@ import {postGarage} from "../API/index";
 class AddGarage extends React.Component{
     constructor(props) {
         super(props);
+        this.renderTableHeader = this.renderTableHeader.bind(this);
+        this.element = this.element.bind(this)
         this.state = {
             name: "",
             address: "",
@@ -32,12 +34,39 @@ class AddGarage extends React.Component{
         return(
             <div className="AddGarage">
                 <h1>Ajouter un garage</h1>
+                {
+                    this.renderTableHeader(this.element).map((column,index)=>{
+                            if(column !== "image"){
+                                return(
+                                <input
+                                    type={"text"}
+                                    name={this.element[`${column}`]}
+                                    placeholder={this.element[`${column}`]}
+                                    value={this.element[`${column}`]}
+                                    onChange={(event)=>this.nameChange(event)}
+                                    required
+                                >
+                                    {this.element[`${column}`]}
+                                </input>)}
+                                    return(
+                                    <input
+                                        type={"text"}
+                                        name={this.element[`${column}`]}
+                                        placeholder={this.element[`${column}`]}
+                                        value={this.element[`${column}`]}
+                                        onChange={event => this.imageChange(event)}
+                                        required
+                                    >
+                                        {this.element[`${column}`]}
+                                    </input>);
+                    })
+                }
                 <input
                     type={"text"}
                     name={"Nom"}
                     value={this.state.name}
                     placeholder={"Nom"}
-                    onChange={(event)=>this.nameChange(event)}
+
                     required
                     />
                 <input
