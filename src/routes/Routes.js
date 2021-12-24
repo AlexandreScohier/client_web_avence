@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import Login from "../component/Connection";
 import Menu from "../component/Menu";
 import Tableau from "../component/Garage/GarageTable"
+import {getAllGarage,deleteGarage} from "../component/API";
 class Routes extends React.Component{
     constructor(props) {
         super(props);
@@ -18,10 +19,10 @@ class Routes extends React.Component{
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.state.user === undefined){
-            console.log("cc");
             this.setState({user:this.props.userStore});
         }
     }
+
 
     render() {
         return (
@@ -36,7 +37,7 @@ class Routes extends React.Component{
 
                         }/>
                         <Route path="/garages" render={()=>{
-                        return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau/> : <Redirect to={'/login'}/>
+                        return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllGarage} deleteElement = {deleteGarage}/> : <Redirect to={'/login'}/>
                         }
                         }/>
 
