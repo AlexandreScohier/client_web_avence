@@ -5,6 +5,7 @@ import "../../style/tableStyle.css"
 const RowEditGarage = ({handleEditClick, garage}) =>{
     return(
         <tr>
+
             <td>
                 <input
                     type={"text"}
