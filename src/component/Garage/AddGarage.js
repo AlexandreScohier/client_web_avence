@@ -8,10 +8,6 @@ class AddGarage extends React.Component{
         super(props);
         this.renderTableHeader = this.props.renderTableHeader;
         this.state = {
-            name: "",
-            address: "",
-            phoneNumber: "",
-            image: "",
             element : props.element}
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -36,10 +32,9 @@ class AddGarage extends React.Component{
         const data = postGarage({name:name,address:address,phoneNumber: phoneNumber,image:image});
     }
     render() {
-        console.log(this.state.element);
         return(
             <div className="AddGarage">
-                <h1 key={"title"}>Ajouter un garage</h1>
+                <h1 key={"title"}>Ajouter un {this.props.element}</h1>
                 {
                     this.renderTableHeader(this.state.element).map((column,index)=>{
                         let functionName;
