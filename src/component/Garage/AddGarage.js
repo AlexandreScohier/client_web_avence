@@ -8,7 +8,11 @@ class AddGarage extends React.Component{
         super(props);
         this.renderTableHeader = this.props.renderTableHeader;
         this.state = {
-            element : undefined}
+            name: "",
+            address: "",
+            phoneNumber: "",
+            image: "",
+            element : props.element}
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props !== prevProps){
@@ -16,10 +20,20 @@ class AddGarage extends React.Component{
         }
     }
 
-    changeValue(event,column){
-        let elemToSave = this.state.element;
-        elemToSave[`${column}`] = event.target.value;
-        this.setState({element:elemToSave});
+    nameChange(evt){
+        this.setState({name:evt.target.value});
+    }
+    addressChange(evt){
+        this.setState({address:evt.target.value});
+    }
+    phoneNumberChange(evt){
+        this.setState({phoneNumber:evt.target.value});
+    }
+    imageChange(evt){
+        this.setState({image:evt.target.value});
+    }
+    submit(name,address,phoneNumber,image){
+        const data = postGarage({name:name,address:address,phoneNumber: phoneNumber,image:image});
     }
     render() {
         console.log(this.state.element);
@@ -28,17 +42,36 @@ class AddGarage extends React.Component{
                 <h1 key={"title"}>Ajouter un garage</h1>
                 {
                     this.renderTableHeader(this.state.element).map((column,index)=>{
-                        if(column!=="id") {
-                                return (
-                                    <input
-                                        key={index}
-                                        type={"text"}
-                                        name={this.state.element[`${column}`] ?? ""}
-                                        onChange={(event) => this.changeValue(event)}
-                                        required
-                                    />
-                                )
-
+                        let functionName;
+                        console.log(column);
+                        switch(column){
+                            case "nom" :  functionName = this.nameChange;
+                            break;
+                            case"numtel" : functionName = this.phoneNumberChange;
+                            break;
+                            case "adresse" : functionName = this.addressChange;
+                            break;
+                        }
+                        if(column !== "image"){
+                            return(
+                                <input
+                                    key={index}
+                                    type={"text"}
+                                    name={this.state.element[`${column}`] ?? ""}
+                                    placeholder={this.state.element[`${column}`]}
+                                    onChange={(event)=>functionName(event)}
+                                    required
+                               />
+                                )}else {
+                            return (
+                                <input
+                                    key={index}
+                                    type={"text"}
+                                    name={this.state.element[`${column}`]}
+                                    placeholder={this.state.element[`${column}`]}
+                                    onChange={event => this.imageChange(event)}
+                                    required
+                                />);
                         }
                     })
                 }
