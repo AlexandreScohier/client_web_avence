@@ -27,21 +27,17 @@ class Menu extends React.Component{
                 </Button>
                 <Button
                     variant={"contained"}
-                    component={Link} to={"/garages"}>
+                    component={Link} to={"/mechanics"}>
                     Modifier les mécaniciens
                 </Button>
                 <Button
                     variant={"contained"}
-                    onClick={()=>{
-                        console.log("Essaie")
-                        return <Redirect to={"/garages"}/>}}>
+                    component={Link} to={"/schedules"}>
                     Modifier les horaires
                 </Button>
                 <Button
                     variant={"contained"}
-                    onClick={()=>{
-                        console.log("Essaie")
-                        return <Redirect to={"/garages"}/>}}>
+                    component={Link} to={"/repairs"}>
                     Modifier les reparations
                 </Button>
             </div>

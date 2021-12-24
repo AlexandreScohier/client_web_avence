@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Select from 'react-select'
-import "../style/SelectMechanicsStyle.css"
+import "../../style/SelectMechanicsStyle.css"
 
 class SelectMechanics extends React.Component {
     constructor() {
