@@ -9,7 +9,9 @@ class TableauGarage extends React.Component{
     constructor(props) {
         super(props);
         this.getAllElements = this.props.getAllElements;
-        this.deleteElement= this.props.deleteElement;
+        this.deleteElement = this.props.deleteElement;
+        this.updateGarage = this.props.updateGarage;
+        this.postGarage = this.props.postGarage;
         this.state = {
             elements: [],
             idEdit: null,
