@@ -2,45 +2,22 @@ import React from "react";
 import {TextField} from "@material-ui/core";
 import "../../style/tableStyle.css"
 
-const RowEditGarage = ({handleEditClick, garage}) =>{
+const RowEditGarage = ({handleEditClick, element, renderTableHeader}) =>{
     return(
         <tr>
-            <td>
-                <input
-                    type={"text"}
-                    name={"Nom"}
-                    placeholder={"Nom"}
-                    value={garage.nom}
-                    required
-                >{garage.nom}</input>
-            </td>
-            <td>
-                <input
-                    type={"text"}
-                    name={"adresse"}
-                    placeholder={"Adresse"}
-                    value={garage.adresse}
-                    required
-                >{garage.adresse}</input>
-            </td>
-            <td>
-                <input
-                    type={"text"}
-                    name={"Numéro de téléphone"}
-                    placeholder={"Numéro de téléphone"}
-                    value={garage.numtel}
-                    required
-                >{garage.numtel}</input>
-            </td>
-            <td>
-                <input
-                    type={"text"}
-                    name={"image"}
-                    placeholder={"Url de l'image"}
-                    value={garage.image}
-                    required
-                >{garage.image}</input>
-            </td>
+            {
+                renderTableHeader(element).map((column,index)=>{
+                    return <td>
+                            <input
+                            type={"text"}
+                            name={element[`${column}`]}
+                            placeholder={element[`${column}`]}
+                            value={element[`${column}`]}
+                            required
+                        >{element[`${column}`]}</input>
+                        </td>;
+                })
+            }
             <td>
                 <button type="button">
                     save

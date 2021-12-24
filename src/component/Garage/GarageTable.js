@@ -1,45 +1,32 @@
 import React,{Fragment, useState} from "react";
-import {getAllGarage,deleteGarage} from "../API/index";
 import AddGarage from "./AddGarage";
 import RowReadGarage from "./RowReadGarage";
 import RowEditGarage from "./RowEditGarage";
 import "../../style/tableStyle.css";
+import {getAllGarage} from "../API";
 
 class TableauGarage extends React.Component{
     constructor() {
         super();
-
+        this.getAllElements = this.getAllGarage.bind(this);
+        this.deleteElement= this.deleteGarage.bind(this);
         this.state = {
-            garageTitle: {
-                name: "Nom",
-                address: "adresse",
-                phoneNumber: "Numéro de téléphone",
-                image: "image"
-            },
             titles : [],
-            garages: [],
+            elements: [],
             idEdit: null,
             idDelete: null,
         }
 
     }
-
     componentDidMount() {
-        getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
-
+        this.getAllElements().then(response=>this.setState({elements:response})).catch(error=>console.error(error));
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.state == prevState){
-            getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
-
-        }
-    }
-
 
     handleEditClick = (event, index) => {
         event.preventDefault();
         this.setState({idEdit : index});
     }
+
     renderTableHeader(tab) {
         let titles = [];
         console.log(tab);
@@ -58,7 +45,7 @@ class TableauGarage extends React.Component{
                     <thead>
                         <tr>
                             {
-                                this.renderTableHeader(this.state.garages[0]).map((title,index)=>{
+                                this.renderTableHeader(this.state.elements[0]).map((title,index)=>{
                                         return <th>{title}</th>;
 
                                 })
@@ -68,12 +55,12 @@ class TableauGarage extends React.Component{
                     </thead>
                     <tbody>
                     {
-                        this.state.garages.map((garage,index)=>(
+                        this.state.elements.map((element,index)=>(
                             <Fragment>
                                 { this.state.idEdit === index ? (
-                                    <RowEditGarage handleEditClick = {this.handleEditClick} garage={{garage}}/>
+                                    <RowEditGarage handleEditClick = {this.handleEditClick} element={element} renderTableHeader={this.renderTableHeader}/>
                                 ) : (
-                                    <RowReadGarage garage={garage} handleEditClick = {this.handleEditClick} handleDeleteClick = {deleteGarage} index={index} renderTableHeader={this.renderTableHeader} id={garage.id}/>
+                                    <RowReadGarage element={element} handleEditClick = {this.handleEditClick = {delete : this.deleteGarage}} index={index} renderTableHeader={this.renderTableHeader}/>
                                 )}
                             </Fragment>
                             ))}
