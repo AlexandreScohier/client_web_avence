@@ -56,8 +56,45 @@ const deleteGarage = async(idGarage)=>{
     });
     return reponse.status;
 }
+const postGarage = async(nom,adresse,numTel,image)=>{
+    console.log(nom);
+    const reponse = await axios.post(API_URL+"garage/",{
+        headers:header,
+        data:{
+            nom : nom,
+            adresse : adresse,
+            numTel : numTel,
+            image : image
+        }
+    }).catch(error=>{
+        if(error.response.status===500){
+            throw new Error("Erreur sdur le serveur")
+        }else if(error.response.status === 400){
+            throw new Error("Erreur sur les éléments de la requête");
+        }
+    });
+    return reponse.data;
+}
+const updateGarage = async(id,nom,adresse,numTel)=>{
+    const reponse = await axios.patch(API_URL+"garage/",{
+        headers:header,
+        data : {
+            id : id,
+            nom:nom,
+            adresse: adresse,
+            numTel : numTel
+        }
+    }).catch(error=>{
+        if(error.response.status === 500){
+            throw new Error("Ressource manquante");
+        }
+    });
+    return reponse.data;
+}
 export {
     login,
     getAllGarage,
-    deleteGarage
+    deleteGarage,
+    postGarage,
+    updateGarage
 }

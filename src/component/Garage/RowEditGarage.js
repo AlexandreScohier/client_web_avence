@@ -12,7 +12,7 @@ const RowEditGarage = ({handleEditClick, garage}) =>{
                     placeholder={"Nom"}
                     value={garage.nom}
                     required
-                />
+                >{garage.nom}</input>
             </td>
             <td>
                 <input
@@ -21,7 +21,7 @@ const RowEditGarage = ({handleEditClick, garage}) =>{
                     placeholder={"Adresse"}
                     value={garage.adresse}
                     required
-                />
+                >{garage.adresse}</input>
             </td>
             <td>
                 <input
@@ -30,7 +30,7 @@ const RowEditGarage = ({handleEditClick, garage}) =>{
                     placeholder={"Numéro de téléphone"}
                     value={garage.numtel}
                     required
-                />
+                >{garage.numtel}</input>
             </td>
             <td>
                 <input
@@ -39,7 +39,7 @@ const RowEditGarage = ({handleEditClick, garage}) =>{
                     placeholder={"Url de l'image"}
                     value={garage.image}
                     required
-                />
+                >{garage.image}</input>
             </td>
             <td>
                 <button type="button">

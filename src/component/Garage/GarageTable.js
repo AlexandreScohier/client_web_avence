@@ -26,22 +26,19 @@ class TableauGarage extends React.Component{
 
     componentDidMount() {
         getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
-        console.log(this.state.garages);
 
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.state == prevState){
+            getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
 
-        getAllGarage().then(response=>this.setState({garages:response})).catch(error=>console.error(error));
-        console.log(this.state.garages);
+        }
     }
+
 
     handleEditClick = (event, index) => {
         event.preventDefault();
         this.setState({idEdit : index});
-    }
-    handleDeleteClick = (event,index)=>{
-        event.preventDefault();
-        deleteGarage(index);
     }
     renderTableHeader(tab) {
         let titles = [];

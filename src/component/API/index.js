@@ -16,8 +16,25 @@ const deleteGarage = async (idGarage)=>{
         throw new Error("Identifiant du garage incorrect");
     }
 }
+const postGarage = async(garage)=>{
+    console.log(garage);
+    if(garage !== undefined){
+        return await api.postGarage(garage.name,garage.address,garage.phoneNumber,garage.image);
+    }else{
+        throw new Error("Erreur composant le garage manquant");
+    }
+}
+const updateGarage = async(id,nom,adresse,numTel)=>{
+    if(id!==undefined && nom !== undefined && adresse !== undefined && numTel!== undefined){
+        return await api.updateGarage(id,nom,adresse,numTel);
+    }{
+        throw new Error("Les informations à envoyer à l'pi ne sont pas bonnes");
+    }
+}
 export {
     login,
     getAllGarage,
-    deleteGarage
+    deleteGarage,
+    postGarage,
+    updateGarage
 }
