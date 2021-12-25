@@ -192,7 +192,6 @@ const updateDispo= async(id,date,isbooked,idMecano,idReparation)=>{
     return reponse.data;
 }
 const postDispo = async(date,isBooked,idMecanicien,idReparation)=>{
-    console.log(nom,prenom,password,adresseMail,garage_fk);
     const reponse = await axios.post(API_URL+"dispo/", {
         date:date,
         isBooked:isBooked,

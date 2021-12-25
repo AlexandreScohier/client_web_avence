@@ -27,18 +27,13 @@ class Menu extends React.Component{
                 </Button>
                 <Button
                     variant={"contained"}
-                    component={Link} to={"/mechanics"}>
+                    component={Link} to={"/mecano"}>
                     Modifier les mécaniciens
                 </Button>
                 <Button
                     variant={"contained"}
-                    component={Link} to={"/schedules"}>
+                    component={Link} to={"/dispos"}>
                     Modifier les horaires
-                </Button>
-                <Button
-                    variant={"contained"}
-                    component={Link} to={"/repairs"}>
-                    Modifier les reparations
                 </Button>
             </div>
         )

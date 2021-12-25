@@ -57,10 +57,28 @@ const postMecano = async(mecano)=>{
     }
 }
 const postDispo = async(dispo)=>{
-    if(mecano !== undefined){
-        return await api.postMecanicien(mecano.nom,mecano.prenom,mecano.password,mecano.adresseMail,mecano.garage_fk);
+    if(dispo !== undefined){
+        return await api.postDispo(dispo.date,dispo.isBooked,dispo.idMecano,dispo.idReparation);
     }else{
         throw new Error("Erreur composant le garage manquant");
+    }
+}
+const getAllDispo = async()=>{
+    return await api.getAllDispo();
+}
+const upDateDispo = async(id,date,isbooked,idMecanicien,idReparation)=>{
+    if(id!== undefined && date!== undefined && isbooked !== undefined && idMecanicien !== undefined && idReparation !== undefined){
+        return await api.updateDispo(id,date,isbooked,idMecanicien,idReparation);
+    }else{
+        throw new Error("Erreur lors de l'ajout du composant");
+    }
+
+}
+const deleteDispo = async(id,idMecano)=>{
+    if(id!== undefined && idMecano!== undefined){
+        return await api.deleteDispo(id,idMecano);
+    }else{
+        throw new Error("Erreur lors de l'effacement du composant");
     }
 }
 export {
@@ -72,5 +90,9 @@ export {
     getAllMecanicien,
     deleteMecanicien,
     updateMecanicien,
-    postMecano
+    postMecano,
+    postDispo,
+    getAllDispo,
+    upDateDispo,
+    deleteDispo
 }

@@ -10,7 +10,7 @@ import Login from "../component/Connection";
 import Menu from "../component/Menu";
 import Tableau from "../component/Garage/GarageTable"
 import MechanicTableSelected from "../component/Garage/MechanicTableSelected"
-import {getAllGarage,deleteGarage,updateGarage,postGarage,getAllMecanicien,updateMecanicien,deleteMecanicien,postMecano} from "../component/API";
+import {getAllGarage,deleteGarage,updateGarage,postGarage,getAllMecanicien,updateMecanicien,deleteMecanicien,postMecano,upDateDispo,deleteDispo,getAllDispo,postDispo} from "../component/API";
 class Routes extends React.Component{
     constructor(props) {
         super(props);
@@ -41,9 +41,13 @@ class Routes extends React.Component{
                         return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllGarage} deleteElement = {deleteGarage} updateGarage = {updateGarage} postGarage = {postGarage}/> : <Redirect to={'/login'}/>
                         }}/>
 
-                        /*<Route path="/mechanics" render={()=>{
+                        <Route path="/mecano" render={()=>{
                             return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllMecanicien} deleteElement = {deleteMecanicien} updateGarage = {updateMecanicien} postGarage = {postMecano}/> : <Redirect to={'/login'}/>
-                        }}/>*/
+                        }}/>
+                        <Route path="/dispos" render={()=>{
+                            return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllDispo} deleteElement = {deleteDispo} updateGarage = {upDateDispo} postGarage = {postDispo}/> : <Redirect to={'/login'}/>
+
+                        }}/>
 
 
 
