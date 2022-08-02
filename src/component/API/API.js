@@ -2,8 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3001/";
 let header = {'Access-Control-Allow-Origin' : "*"}
-const login = async(adresseMail,password)=>{
 
+const login = async(adresseMail,password)=>{
     const reponse = await axios.post(API_URL+"user/admin",{
         adresseMail,
         password
@@ -25,8 +25,6 @@ const login = async(adresseMail,password)=>{
         'Accept-version' : "1.0.0",
         'Access-Control-Allow-Origin' : "*"
     }
-    console.log(header);
-    console.log(reponse.data);
 
 
     return reponse.data;

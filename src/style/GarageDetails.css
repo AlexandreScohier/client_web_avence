@@ -1,0 +1,25 @@
+.GarageDetails{
+    margin-left: 15%;
+    padding: 20px;
+}
+
+.GarageDetails form{
+    background-color: #212529;
+    padding: 50px 50px 20px 50px;
+    color: white;
+    border: 3px solid #3C4042;
+}
+
+form h1{
+    margin-bottom: 30px;
+}
+
+form img{
+    width: 100%;
+}
+
+
+.submit{
+    margin-top: 50px;
+}
+

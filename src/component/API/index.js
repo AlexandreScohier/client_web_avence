@@ -28,7 +28,8 @@ const updateGarage = async(id,nom,adresse,numTel)=>{
     console.log(id+nom+adresse+numTel);
     if(id!==undefined && nom !== undefined && adresse !== undefined && numTel!== undefined){
         return await api.updateGarage(id,nom,adresse,numTel);
-    }{
+    }else
+    {
         throw new Error("Les informations à envoyer à l'pi ne sont pas bonnes");
     }
 }
@@ -45,7 +46,8 @@ const deleteMecanicien = async (idMecano)=>{
 const updateMecanicien = async(id,nom,prenom,password)=>{
     if(id!==undefined && nom !== undefined && prenom !== undefined && password!== undefined){
         return await api.updateMecanicien(id,nom,prenom,password);
-    }{
+    }else
+    {
         throw new Error("Les informations à envoyer à l'pi ne sont pas bonnes");
     }
 }
