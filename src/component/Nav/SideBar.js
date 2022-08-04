@@ -3,6 +3,13 @@ import "./SideBar.css";
 import Logo from "../../image/logo.jpg"
 
 class SideBar extends React.Component{
+
+    disconnect(){
+        localStorage.clear();
+        window.location.reload();
+    }
+
+
  render() {
     return (
         <div className="SidBar">
@@ -30,8 +37,7 @@ class SideBar extends React.Component{
                 </li>
 
                 <li 
-                onClick={() => window.location.pathname = "/Logout"}
-                id={window.location.pathname === "/Logout" ? "active" : ""}
+                onClick={() => this.disconnect()}
                 >
                     Logout
                 </li>

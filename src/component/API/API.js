@@ -31,16 +31,30 @@ const login = async(adresseMail,password)=>{
 
 
 }
-const getAllGarage = async ()=>{
-    const reponse = await axios.get(API_URL+"garage/",{
-    headers : header
+const getGarageById = async (idGarage) => {
+    const response = await axios.get(API_URL+"garage/"+idGarage,{
+        headers : {
+            Authorization:"Bearer " + localStorage.getItem("Token")
+        }
     }).catch(error=>{
         if(error.response.status === 404)
             throw new Error("Garage inconnu");
         else if(error.response.status === 500)
             throw new Error("Erreur de connexion");
     });
-    console.log(JSON.stringify(reponse.data));
+    return response.data;
+}
+const getAllGarage = async ()=>{
+    const reponse = await axios.get(API_URL+"garage/",{
+        headers : {
+            Authorization:"Bearer " + localStorage.getItem("Token")
+        }
+    }).catch(error=>{
+        if(error.response.status === 404)
+            throw new Error("Aucun garage renseigné");
+        else if(error.response.status === 500)
+            throw new Error("Erreur de connexion");
+    });
     return reponse.data;
 }
 const deleteGarage = async(idGarage)=>{
@@ -149,8 +163,11 @@ const postMecanicien = async(nom,prenom,password,adresseMail,garage_fk)=>{
     return reponse.data;
 }
 const getAllDispo = async()=>{
-    const reponse = await axios.get(API_URL+"dispo/",{
-        headers : header
+    console.log(localStorage.getItem("Token"));
+    const reponse = await axios.get(API_URL+"disponibilite/",{
+        headers : {
+            Authorization:"Bearer " + localStorage.getItem("Token")
+        }
     }).catch(error=>{
         if(error.response.status === 404)
             throw new Error("Pas de mécanicien dans la base de dinnées");
@@ -221,5 +238,6 @@ export {
     deleteDispo,
     updateDispo,
     postDispo,
+    getGarageById,
 
 }

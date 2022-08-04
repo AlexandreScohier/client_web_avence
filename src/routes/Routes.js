@@ -15,44 +15,56 @@ import {connect} from "react-redux";
 
 
 class Routes extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {isConnected :undefined}
-    }
 
-    componentDidUpdate() {
-        if(this.state.user === undefined){
-            this.setState({user:this.props.userStore});
-        }
+        this.state = {
+            userStore : undefined,
         
+    };
+}
+    isConnected(){
+        return localStorage.getItem("Token");
     }
-
     
+
     render() {
         
-        const HomeComponent = () => this.state.isConnected ? <SideBar/> : <Redirect to={"/Login"}/>
-        const LoginComponent = () => this.state.isConnected ? <Redirect to={"/"}/> : <Connection/>
-
+        const HomeComponent = () => this.isConnected()? <SideBar/> : <Redirect to={"/Login"}/>
+        const LoginComponent = () => this.isConnected() ? <Redirect to={"/"}/> : <Connection/>
+       
         return (
             <div >
                 <Router>
                     <Switch>
                         <Route exact path="/Login" component={LoginComponent}/>
                         <Route exact path="/" component={HomeComponent}/>
-                        <Route exact path="/Logout" onEnter={() => this.props.login(undefined)}/>
-                        <Route exact path="/Garage" render={() =>
-                            this.state.user === undefined ? <Redirect to="/login"/>:
+                        <Route exact path="/Garage" render={() => 
+                            this.isConnected() ?
                             <Fragment>
                             <SideBar />
                             <GarageList />
                             </Fragment>
+                            :
+                             <Redirect to="/login"/>
                         } />
-                        <Route exact path="/Garage/details" render={() =>
-                            this.state.user === undefined ? <Redirect to="/login"/>:
+                        <Route exact path="/Garage/Edit/:id" render={() =>
+                            this.isConnected() ? 
                             <Fragment>
                             <SideBar />
-                            <GarageDetails />
+                            <GarageDetails isEditMode={true} />
                             </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Garage/Add" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <GarageDetails isEditMode={false} />
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
                         } />
                         {/* <Route path="/login" component={Login}/> */}
 
@@ -86,5 +98,6 @@ const mapStateToProps = (state) => {
         userStore: state.login.userStore,
     }
 };
+
 
 export default connect(mapStateToProps)(Routes);

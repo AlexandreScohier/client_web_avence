@@ -4,8 +4,6 @@ import {login} from "../API";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 
-
-
 class Connection extends React.Component{
 
     constructor(props) {
@@ -27,9 +25,9 @@ class Connection extends React.Component{
             if(data.user.userRecup.userType !== "mecano") {
                 throw new Error("Un client ne peut pas se connecter à l'application!");
             }
-            this.props.login(data.user.userRecup);
-            //this.setState({isConnected:true});
-            console.log(this.isConnected);
+            localStorage.setItem("Token",data.token)
+            this.setState({isConnected:true});
+            
         }catch (error) {
             this.setState({
                 error : true,
