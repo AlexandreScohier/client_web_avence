@@ -6,11 +6,15 @@ import {
     Redirect,
 } from "react-router-dom";
 
-import SideBar from "../component/Nav/SideBar"
+import SideBar from "../component/shared/Nav/SideBar"
 import Connection from "../component/Login/Connection"
-import GarageList from "../component/Garage/GarageList"
+import ElementList from "../component/shared/ElementList"
 import GarageDetails from "../component/Garage/GarageDetails"
+import MechanicDetails from "../component/Mechanic/MechanicDetails"
+import RepairDetails from "../component/Repair/RepairDetails"
+import AvailabilityDetails from "../component/Availability/AvailablilityDetails"
 import {connect} from "react-redux";
+import Models from "../Models/Models";
 
 
 
@@ -20,7 +24,6 @@ class Routes extends React.Component{
 
         this.state = {
             userStore : undefined,
-        
     };
 }
     isConnected(){
@@ -29,7 +32,6 @@ class Routes extends React.Component{
     
 
     render() {
-        
         const HomeComponent = () => this.isConnected()? <SideBar/> : <Redirect to={"/Login"}/>
         const LoginComponent = () => this.isConnected() ? <Redirect to={"/"}/> : <Connection/>
        
@@ -39,11 +41,12 @@ class Routes extends React.Component{
                     <Switch>
                         <Route exact path="/Login" component={LoginComponent}/>
                         <Route exact path="/" component={HomeComponent}/>
+                        
                         <Route exact path="/Garage" render={() => 
                             this.isConnected() ?
                             <Fragment>
                             <SideBar />
-                            <GarageList />
+                            <ElementList model={Models.garage} />
                             </Fragment>
                             :
                              <Redirect to="/login"/>
@@ -52,7 +55,7 @@ class Routes extends React.Component{
                             this.isConnected() ? 
                             <Fragment>
                             <SideBar />
-                            <GarageDetails isEditMode={true} />
+                            <GarageDetails isEditMode={true} model={Models.garage}/>
                             </Fragment>
                             :
                              <Redirect to="/login"/>
@@ -61,31 +64,95 @@ class Routes extends React.Component{
                             this.isConnected() ? 
                             <Fragment>
                             <SideBar />
-                            <GarageDetails isEditMode={false} />
+                            <GarageDetails isEditMode={false} model={Models.garage}/>
                             </Fragment>
                             :
                              <Redirect to="/login"/>
                         } />
-                        {/* <Route path="/login" component={Login}/> */}
 
-                        {/* <Route path="/menu" render={()=>{
-                            return this.state.user === undefined ? <Redirect to="/login"/>:
-                                (this.state.user.userType === "mecano")? <Menu/> : <Redirect to={"/"}/>
-                        }}/>
+                        <Route exact path="/Mechanic" render={() => 
+                            this.isConnected() ?
+                            <Fragment>
+                            <SideBar />
+                            <ElementList model={Models.mechanic} />
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Mechanic/Edit/:id" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <MechanicDetails isEditMode={true} model={Models.mechanic}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Mechanic/Add" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <MechanicDetails isEditMode={false} model={Models.mechanic}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
 
-                        <Route path="/garages" render={()=>{
-                        return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllGarage} deleteElement = {deleteGarage} updateGarage = {updateGarage} postGarage = {postGarage}/> : <Redirect to={'/login'}/>
-                        }}/>
+                        <Route exact path="/Availability" render={() => 
+                            this.isConnected() ?
+                            <Fragment>
+                            <SideBar />
+                            <ElementList model={Models.availability} />
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Availability/Edit/:id" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <AvailabilityDetails isEditMode={true} model={Models.availability}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Availability/Add" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <AvailabilityDetails isEditMode={false} model={Models.availability}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
 
-                        <Route path="/mecano" render={()=>{
-                            return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllMecanicien} deleteElement = {deleteMecanicien} updateGarage = {updateMecanicien} postGarage = {postMecano}/> : <Redirect to={'/login'}/>
-                        }}/>
-                        <Route path="/dispos" render={()=>{
-                            return this.state.user === undefined? <Redirect to={"/login"}/> : (this.state.user.userType === "mecano")?<Tableau getAllElements = {getAllDispo} deleteElement = {deleteDispo} updateGarage = {upDateDispo} postGarage = {postDispo}/> : <Redirect to={'/login'}/>
-
-                        }}/> */}
-
-
+                        <Route exact path="/Repair" render={() => 
+                            this.isConnected() ?
+                            <Fragment>
+                            <SideBar />
+                            <ElementList model={Models.repair} />
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Repair/Edit/:id" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <RepairDetails isEditMode={true} model={Models.repair}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
+                        <Route exact path="/Repair/Add" render={() =>
+                            this.isConnected() ? 
+                            <Fragment>
+                            <SideBar />
+                            <RepairDetails isEditMode={false} model={Models.repair}/>
+                            </Fragment>
+                            :
+                             <Redirect to="/login"/>
+                        } />
 
                     </Switch>
                 </Router>

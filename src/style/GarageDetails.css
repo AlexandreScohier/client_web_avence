@@ -10,6 +10,11 @@
     border: 3px solid #3C4042;
 }
 
+
+.GarageDetails input[type=range]{
+   width: 75%;
+}
+
 form h1{
     margin-bottom: 30px;
 }
@@ -29,4 +34,5 @@ form img{
 .submit{
     margin-top: 70px;
 }
+
 

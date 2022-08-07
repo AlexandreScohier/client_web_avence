@@ -31,6 +31,28 @@ const login = async(adresseMail,password)=>{
 
 
 }
+
+const getAsync = async (route) => {
+    return (await axios.get(API_URL + route, {headers: {Authorization:"Bearer " + localStorage.getItem("Token")}})).data;
+}
+
+const getByIdAsync  = async (route, id) => {
+    return (await axios.get(API_URL + route + id, {headers: {Authorization:"Bearer " + localStorage.getItem("Token")}})).data;
+}
+
+const deleteAsync  = async (route, id) => {
+    (await axios.delete(API_URL + route, {headers: {Authorization:"Bearer " + localStorage.getItem("Token")}, data:{id : id}}));
+}
+
+const updateAsync  = async(route, element) => {
+    (await axios.patch(API_URL + route,element, {headers: {Authorization:"Bearer " + localStorage.getItem("Token")}}));
+}
+
+const postAsync = async(route, element) => {
+    await axios.post(API_URL + route, element, {headers: {Authorization:"Bearer " + localStorage.getItem("Token")}});
+}
+
+
 const getGarageById = async (idGarage) => {
     const response = await axios.get(API_URL+"garage/"+idGarage,{
         headers : {
@@ -226,6 +248,11 @@ const postDispo = async(date,isBooked,idMecanicien,idReparation)=>{
 
 export {
     login,
+    getAsync,
+    getByIdAsync,
+    deleteAsync,
+    updateAsync,
+    postAsync,
     getAllGarage,
     deleteGarage,
     postGarage,

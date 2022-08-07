@@ -1,7 +1,7 @@
 import React from "react";
 import "../../style/GarageDetails.css";
-import { getGarageById } from "../API/API";
-import { withRouter  } from 'react-router-dom';
+import { getByIdAsync, postAsync, updateAsync } from "../API/API";
+import { withRouter} from 'react-router-dom';
 
 
 
@@ -10,21 +10,30 @@ class GarageDetails extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            garage: {
-                image: undefined,
-                nom: undefined,
-                adresse: undefined,
-                numtel: undefined,
-            },
+            garage: {},
+            model: this.props.model,
             isEditMode: this.props.isEditMode,
             
         }
     }
-
     async componentDidMount() {
         if(this.state.isEditMode){
             const id  = this.props.match.params.id;
-            await getGarageById(id).then(response=>this.setState({garage:response})).catch(error=>console.error(error));
+            await getByIdAsync(this.state.model.apiRoute, id).then(response=>this.setState({garage:response})).catch(error=>console.error(error));
+        }
+    }
+
+    async handlesubmit(event){
+        console.log(this.state.garage);
+        event.preventDefault();
+        if(this.state.isEditMode){
+            await updateAsync(this.state.model.apiRoute, this.state.garage).then(() => 
+            this.props.history.push("/"+this.state.model.route)
+            );
+        }else{
+            await postAsync(this.state.model.apiRoute, this.state.garage).then(() => 
+            this.props.history.push("/"+this.state.model.route)
+            );
         }
     }
 
@@ -33,50 +42,23 @@ class GarageDetails extends React.Component{
         this.setState({...this.state.garage, image: this.state.imageLink});
     }
 
-    imageLinkChange(evt){
-        this.setState({imageLink:evt.target.value});
-    }
 
-    handlesubmit(event){
-        event.preventDefault();
-        if(this.state.isEditMode){
-
-        }else{
-        
-        }
-    }
-
-    ImageInputChange(evt){
+    onChange(event){
         let elemToSave = this.state.garage;
-        elemToSave.image = evt.target.value;
-        this.setState({garage:elemToSave});
-    }
-    nameInputChange(evt){
-        let elemToSave = this.state.garage;
-        elemToSave.nom = evt.target.value;
-        this.setState({garage:elemToSave});
-    }
-    adresseInputChange(evt){
-        let elemToSave = this.state.garage;
-        elemToSave.adresse = evt.target.value;
-        this.setState({garage:elemToSave});
-    }
-    phoneNumberInputChange(evt){
-        let elemToSave = this.state.garage;
-        elemToSave.numtel = evt.target.value;
-        this.setState({garage:elemToSave});
+        elemToSave[event.target.name]  = event.target.value;
+        this.setState({[event.target.name] : event.target.value})
     }
 
     render() {
         return (
             <div className="GarageDetails">
-                   <form className="">
-                        <h1>{this.state.isEditMode ? "Modification" : "Ajout"} d'un garage</h1>
+                   <form>
+                    <h1>{this.state.isEditMode ? "Modification" : "Ajout"} d'{this.state.model.determinative} {this.state.model.label}</h1>
 
-                        <div className="row g-5">
+                    <div className="row g-5">
                             <div className="col-md-4 ">
-                                {this.state.garage.image ? <img alt="Lien de l'image incorrect" className= "rounded" src={this.state.garage.image} ></img> : <div className="noImage"></div> }
-                                <input className="col-md-12 form-control" value={this.state.garage.image} onChange ={(event)=>this.ImageInputChange(event)} placeholder="Ajouter le lien d'une image"></input>
+                                {this.state.garage.image ? <img alt="Lien est incorrect" className= "rounded" src={this.state.garage.image} ></img> : <div className="noImage"></div> }
+                                <input className="col-md-12 form-control" name={"image"} value={this.state.garage.image} onChange = {(event) => this.onChange(event)} placeholder="Ajouter le lien d'une image"></input>
                             </div>
                             
 
@@ -84,18 +66,18 @@ class GarageDetails extends React.Component{
                                 <div className="row g-5">
                                     <div className="col-md-12">
                                         <label  className="form-label">Nom: </label>
-                                        <input type="text" className="form-control" aria-describedby="emailHelp" value={this.state.garage.nom} onChange ={(event)=>this.nameInputChange(event)}></input>
+                                        <input type="text" className="form-control" name={"nom"} aria-describedby="emailHelp" value={this.state.garage.nom}onChange = {(event) => this.onChange(event)}></input>
                                         {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                                     </div>
 
                                     <div className="col-md-12">
-                                        <label  className="form-label">Numéro de téléphone: </label>
-                                        <input type="text" className="form-control"  value={this.state.garage.adresse} onChange ={(event)=>this.adresseInputChange(event)}></input>
+                                        <label  className="form-label">Address: </label>
+                                        <input type="text" className="form-control" name={"adresse"} value={this.state.garage.adresse} onChange = {(event) => this.onChange(event)}></input>
                                     </div>
 
                                     <div className="col-md-12">
-                                        <label  className="form-label">Address: </label>
-                                        <input type="text" className="form-control" value={this.state.garage.numtel} onChange ={(event)=>this.phoneNumberInputChange(event)}></input>
+                                        <label  className="form-label">Numéro de téléphone: </label>
+                                        <input type="text" className="form-control" name={"numtel"} value={this.state.garage.numtel} onChange = {(event) => this.onChange(event)}></input>
                                     </div>
                                 </div>
                             </div>
