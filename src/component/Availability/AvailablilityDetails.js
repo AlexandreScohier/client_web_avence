@@ -26,14 +26,16 @@ class AvailabilityDetails extends React.Component{
     }
 
     async handlesubmit(event){
-        console.log(this.state.availability)
+        if(this.state.availability.isBooked === undefined){
+            this.state.availability.isBooked = false;
+        }
         event.preventDefault();
         if(this.state.isEditMode){
             await updateAsync(this.state.model.apiRoute, this.state.availability).then(() => 
             this.props.history.push("/"+this.state.model.route)
             );
         }else{
-            await postAsync(this.state.model.apiRoute, this.state.availability.nom,  this.state.availability.nom,  this.state.availability.adresse,  this.state.availability.numtel).then(() => 
+            await postAsync(this.state.model.apiRoute, this.state.availability).then(() => 
             this.props.history.push("/"+this.state.model.route)
             );
         }
@@ -55,7 +57,7 @@ class AvailabilityDetails extends React.Component{
                         <div style={{ display:"inline-block"}}>
                             <div style={{paddingBottom:"20px"}}>
                                 <label  className="form-label">Date: </label> 
-                                <input type="datetime-local" name={"date"} value={this.state.availability.date} onChange = {(event) => this.onChange(event)}></input> 
+                                <input className="form-control" type="datetime-local" name={"date"} id={"date"} defaultValue={this.state.availability.date} value={this.state.availability.date} onChange = {(event) => this.onChange(event)}></input> 
                             </div>
                             
                             <div className="form-check" style={{paddingBottom:"20px"}}>
@@ -63,9 +65,14 @@ class AvailabilityDetails extends React.Component{
                                 <input className="form-check-input" type="checkbox" name={"isBooked"} checked={this.state.availability.isBooked} value={this.state.availability.isBooked} onChange = {(event) => this.onChange(event)}></input>
                             </div>
                             
-                            <div style={{paddingBottom:"20px"}}>
+                            <div>
                                 <label  className="form-label">Numéro du mécanicien: </label>
                                 <input type="text" className="form-control" name={"mecanicien_fk"} value={this.state.availability.mecanicien_fk} onChange = {(event) => this.onChange(event)}></input>
+                            </div>
+
+                            <div>
+                                <label  className="form-label">Numéro de la réparation: </label>
+                                <input type="text" className="form-control" name={"reparation_fk"} value={this.state.availability.reparation_fk} onChange = {(event) => this.onChange(event)}></input>
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary col-md-12 submit" onClick={(event) => this.handlesubmit(event)}>{this.state.isEditMode  ? "Modifier": "Ajouter"}</button>

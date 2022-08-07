@@ -46,7 +46,7 @@ class GarageList extends React.Component{
                                     {this.props.model.tableBody(element)}
                                     <td className="col-md-2">
                                         <button type="button" className="btn btn-primary" onClick={() => window.location.pathname = this.state.model.route+"/Edit/"+element.id}>Modifier</button>
-                                        <button type="button" className="btn btn-danger"  onClick={async()=>  await deleteAsync(this.state.model.apiRoute+"/", element.id).then(() => {
+                                        <button type="button" className="btn btn-danger"  onClick={async()=>  await deleteAsync(this.state.model.apiRoute, element.id).then(() => {
                                             this.getElementsAsync();
                                         })}>Supprimer</button>
                                     </td>

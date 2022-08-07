@@ -31,7 +31,7 @@ class RepairDetails extends React.Component{
             this.props.history.push("/"+this.state.model.route)
             );
         }else{
-            await postAsync(this.state.model.apiRoute, this.state.repair.nom,  this.state.repair.nom,  this.state.repair.adresse,  this.state.repair.numtel).then(() => 
+            await postAsync(this.state.model.apiRoute, this.state.repair).then(() => 
             this.props.history.push("/"+this.state.model.route)
             );
         }

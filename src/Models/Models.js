@@ -14,8 +14,8 @@ const Modeles = {
     titles: ["Nom", "Prénom", "Adresse e-mail", "#garage"],  
     },
 
-    availability : {label: "disponibilité", titleList: "Liste des disponibilités", determinative:"une", apiRoute: "dispo/All", route: "Availability", object: [], tableBody: AvailabilityTable,
-    titles: ["N° mécanicien", "Date", "status"],  
+    availability : {label: "disponibilité", titleList: "Liste des disponibilités", determinative:"une", apiRoute: "dispo/", route: "Availability", object: [], tableBody: AvailabilityTable,
+    titles: ["N° mécanicien", "N° Réparation", "Date", "status"],  
     },
 
     repair : {label: "réparation", titleList: "Liste des réparations", determinative:"une", apiRoute: "entretien/",object: [], route: "Repair", tableBody: RepairTable,
